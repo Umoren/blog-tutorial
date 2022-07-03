@@ -14,16 +14,7 @@ type LoaderData = {
 }
 export const loader = async () => {
     return json<LoaderData>({
-        posts: [
-            {
-                slug: "my-first-post",
-                title: "My First Post"
-            },
-            {
-                slug: "90s-mixtape",
-                title: "A Mixtape I made just for you"
-            }
-        ],
+        posts: await getPosts(),
     })
 }
 
@@ -32,6 +23,9 @@ export default function Posts() {
     return (
         <main>
             <h1> Posts </h1>
+            <Link to="admin" className="text-red-600 underline">
+                Admin
+            </Link>
             <ul>
                 {posts.map((post) => (
                     <li key={post.slug}>
